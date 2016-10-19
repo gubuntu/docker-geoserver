@@ -1,10 +1,14 @@
-Geoserver:
-  restart: always
-  image: kartoza/geoserver:latest
-  ports:
-    - "8081:8080"
-  environment:
-    - ORACLE_JDK=true
-  volumes:
-    - /srv/geoserver/data:/opt/geoserver/data_dir
+version: '2'
+services:
+  Geoserver:
+    restart: always
+    build: .
+    image: kartoza/geoserver:2.9.2
+    ports:
+      - "8081:8080"
+    environment:
+      - ORACLE_JDK=true
+      - TOMCAT_EXTRAS=false
+    volumes:
+      - /srv/geoserver/data:/opt/geoserver/data_dir
 

@@ -1,6 +1,5 @@
 FROM tomcat:8.0-jre8
 MAINTAINER Tim Sutton<tim@kartoza.com>
->>>>>>> Stashed changes
 
 RUN  dpkg-divert --local --rename --add /sbin/initctl
 #RUN  ln -s /bin/true /sbin/initctl
@@ -14,7 +13,7 @@ RUN apt-get -y update
 
 #-------------Application Specific Stuff ----------------------------------------------------
 
-ENV GS_VERSION 2.9.1
+ENV GS_VERSION 2.9.2
 ENV GEOSERVER_DATA_DIR /opt/geoserver/data_dir
 
 RUN mkdir -p $GEOSERVER_DATA_DIR
@@ -101,7 +100,7 @@ RUN rm -f /tmp/resources/overlays/README.txt && \
     fi;
 
 # Optionally remove Tomcat manager, docs, and examples
-ARG TOMCAT_EXTRAS=true
+#ARG TOMCAT_EXTRAS=true #moved to docker-compose.yml
 RUN if [ "$TOMCAT_EXTRAS" = false ]; then \
     rm -rf $CATALINA_HOME/webapps/ROOT && \
     rm -rf $CATALINA_HOME/webapps/docs && \
