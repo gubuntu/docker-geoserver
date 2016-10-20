@@ -25,7 +25,7 @@ since deb packages need to be refetched each time you build) do:
 docker build -t kartoza/geoserver git://github.com/kartoza/docker-geoserver
 ```
 
-To build with apt-cacher-ng (and minimised download requirements) do you need to
+To build with apt-cacher-ng (and minimised download requirements) you need to
 clone this repo locally first and modify the contents of 71-apt-cacher-ng to
 match your cacher host. Then build using a local url instead of directly from
 github.
@@ -48,9 +48,10 @@ To replace OpenJDK Java with the Oracle JDK, set build-arg `ORACLE_JDK=true`:
 docker build --build-arg ORACLE_JDK=true -t kartoza/geoserver .
 ```
 
-Alternatively, you can download the Oracle JDK 7 Linux x64 tar.gz currently in use by
+Alternatively, you can download the Oracle JDK 8 Linux x64 tar.gz from [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or the
 [webupd8team's Oracle JDK installer](https://launchpad.net/~webupd8team/+archive/ubuntu/java/+packages)
-(usually the latest version available from Oracle) and place it in `resources` before building.
+(usually the latest version available from Oracle) and place it in `resources` before building. 
+__Note:__ the Dockerfile currently will only pick up the Oracle one; it needs to be adapted to pick up the webupd8 one. 
 
 To enable strong cryptography when using the Oracle JDK (recommended), download the
 [Oracle Java policy jar zip](http://docs.geoserver.org/latest/en/user/production/java.html#oracle-java)
@@ -94,7 +95,7 @@ docker run --name "geoserver"  --link postgis:postgis -p 8080:8080 -d -t kartoza
 ```
 
 You can also use the following environment variables to pass a 
-user name and password. To postgis:
+user name and password to postgis:
 
 * -e USERNAME=<PGUSER> 
 * -e PASS=<PGPASSWORD>

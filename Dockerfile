@@ -2,14 +2,13 @@ FROM tomcat:8.0-jre8
 MAINTAINER Tim Sutton<tim@kartoza.com>
 
 RUN  dpkg-divert --local --rename --add /sbin/initctl
-#RUN  ln -s /bin/true /sbin/initctl
 
 # Use local cached debs from host (saves your bandwidth!)
 # Change ip below to that of your apt-cacher-ng host
 # Or comment this line out if you do not wish to use caching
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
-RUN apt-get -y update
+#RUN apt-get -y update
 
 #-------------Application Specific Stuff ----------------------------------------------------
 
