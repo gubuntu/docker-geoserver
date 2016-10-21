@@ -1,6 +1,6 @@
 # docker-geoserver
 
-A simple docker container that runs Geoserver influenced by this docker
+A simple docker container that runs Geoserver, influenced by this docker
 recipe: https://github.com/eliotjordan/docker-geoserver/blob/master/Dockerfile
 
 **Note:** We recommend using ``apt-cacher-ng`` to speed up package fetching -
@@ -39,6 +39,12 @@ Now edit ``71-apt-cacher-ng`` then do:
 ```shell
 docker build -t kartoza/geoserver .
 ```
+
+### Pre-downloading files
+
+Inspect downloads.sh to confirm which files you want, then run `.downloads.sh.`
+
+If you don't make changes it will download Oracle Java and various Oracle and Geoserver extensions that will be used during the Docker build. 
 
 ### Building with Oracle JDK
 

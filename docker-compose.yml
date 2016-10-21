@@ -12,3 +12,15 @@ services:
     volumes:
       - /srv/geoserver/data:/opt/geoserver/data_dir
 
+#DATA_DIR=~/geoserver_data
+#if [ ! -d $DATA_DIR ]
+#then
+#    mkdir -p $DATA_DIR
+#fi 
+
+#  Postgis:
+#    restart: always
+#    image: kartoza/postgis:
+#    link: geoserver-postgis:postgis
+#    ports:
+
