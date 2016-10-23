@@ -14,10 +14,12 @@ ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
 ENV GS_VERSION 2.9.2
 ENV GEOSERVER_DATA_DIR /opt/geoserver/data_dir
-ENV GEOSERVER_OPTS "-Djava.awt.headless=true -server -Xms2G -Xmx4G -Xrs -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:+UseParallelGC -XX:NewRatio=2"  
+ENV GEOSERVER_OPTS "-Djava.awt.headless=true -server -Xms2G -Xmx4G -Xrs -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:+UseParallelGC -XX:NewRatio=2 -XX:+CMSClassUnloadingEnabled"
+#-XX:+UseConcMarkSweepGC use this rather than parallel GC?  
 ENV JAVA_OPTS "$JAVA_OPTS $GEOSERVER_OPTS"
 ENV GDAL_DATA /usr/local/gdal_data
 ENV LD_LIBRARY_PATH /usr/local/gdal_native_libs
+ENV GEOSERVER_LOG_LOCATION /opt/geoserver/data_dir/logs/geoserver.log
 
 RUN mkdir -p $GEOSERVER_DATA_DIR
 
