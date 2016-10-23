@@ -35,16 +35,15 @@ ADD resources /tmp/resources
 
 #Install Oracle JRE
 RUN if ls /tmp/resources/*jre-*-linux-x64.tar.gz > /dev/null 2>&1; then \
-      rm /usr/lib/jvm/default-java && \
-      mkdir /usr/lib/jvm/default-java && \
+      rm -f /usr/lib/jvm/default-java; \
+      mkdir /usr/lib/jvm/default-java;  \
       tar zxvf /tmp/resources/*jre-*-linux-x64.tar.gz --strip-components=1 -C /usr/lib/jvm/default-java && \
       apt-get autoremove --purge -y openjdk-8-jre-headless; \
        if [ -f /tmp/resources/jce_policy.zip ]; then \
-         unzip -j /tmp/resources/jce_policy.zip -d /tmp/jce_policy && \
-         mv /tmp/jce_policy/*.jar $JAVA_HOME/jre/lib/security/; \
+         unzip -j /tmp/resources/jce_policy.zip -d $JAVA_HOME/jre/lib/security/; \
        fi; \
     fi;
-RUN ls -l /usr/lib/jvm/default-java/jre/lib/security
+RUN ls -l $JAVA_HOME/jre/lib/security
 
 #Add JAI and ImageIO for great speedy speed.
 WORKDIR /tmp/resources
