@@ -7,7 +7,7 @@ services:
     build: .
     image: kartoza/geoserver:2.9.2
     ports:
-      - "8081:8080"
+      - "8080:8080"
     #links: postgis:postgis
     environment:
       - ORACLE_JDK=true
@@ -15,6 +15,8 @@ services:
     volumes:
       - /srv/geoserver/data:/opt/geoserver/data_dir
       - /srv/geoserver/data/tomcat_logs:/usr/local/tomcat/logs
+    extra_hosts: 
+      - "gis:192.168.8.100"
 
 #  Postgis:
 #    container_name: postgis
