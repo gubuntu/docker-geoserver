@@ -40,7 +40,8 @@ RUN if ls /tmp/resources/*jre-*-linux-x64.tar.gz > /dev/null 2>&1; then \
       tar zxvf /tmp/resources/*jre-*-linux-x64.tar.gz --strip-components=1 -C /usr/lib/jvm/default-java && \
       apt-get autoremove --purge -y openjdk-8-jre-headless; \
        if [ -f /tmp/resources/jce_policy.zip ]; then \
-         unzip -j /tmp/resources/jce_policy.zip -d $JAVA_HOME/jre/lib/security/; \
+         unzip -oj -d ${JAVA_HOME}/jre/lib/security /tmp/resources/jce_policy.zip \*/\*.jar; \
+         #unzip -j /tmp/resources/jce_policy.zip -d $JAVA_HOME/jre/lib/security/; \
        fi; \
     fi;
 RUN ls -l $JAVA_HOME/jre/lib/security
